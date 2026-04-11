@@ -1,0 +1,40 @@
+[08-Mar-2026 21:57:37 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/afrino3/trescahub.afrinnovators.co.rw/config/database.php:19
+Stack trace:
+#0 {main}
+  thrown in /home/afrino3/trescahub.afrinnovators.co.rw/config/database.php on line 19
+[08-Mar-2026 21:57:37 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/afrino3/trescahub.afrinnovators.co.rw/config/mail.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/afrino3/trescahub.afrinnovators.co.rw/config/mail.php on line 17
+[08-Mar-2026 21:57:38 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/afrino3/trescahub.afrinnovators.co.rw/config/app.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/afrino3/trescahub.afrinnovators.co.rw/config/app.php on line 16
+[08-Mar-2026 21:57:38 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/afrino3/trescahub.afrinnovators.co.rw/config/services.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/afrino3/trescahub.afrinnovators.co.rw/config/services.php on line 18
+[08-Mar-2026 22:02:35 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/afrino3/trescahub.afrinnovators.co.rw/config/cache.php:18
+Stack trace:
+#0 {main}
+  thrown in /home/afrino3/trescahub.afrinnovators.co.rw/config/cache.php on line 18
+[08-Mar-2026 22:08:38 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/afrino3/trescahub.afrinnovators.co.rw/config/auth.php:17
+Stack trace:
+#0 {main}
+  thrown in /home/afrino3/trescahub.afrinnovators.co.rw/config/auth.php on line 17
+[08-Mar-2026 22:08:38 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/afrino3/trescahub.afrinnovators.co.rw/config/filesystems.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/afrino3/trescahub.afrinnovators.co.rw/config/filesystems.php on line 16
+[08-Mar-2026 22:08:38 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/afrino3/trescahub.afrinnovators.co.rw/config/queue.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/afrino3/trescahub.afrinnovators.co.rw/config/queue.php on line 16
+[08-Mar-2026 22:08:39 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/afrino3/trescahub.afrinnovators.co.rw/config/session.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/afrino3/trescahub.afrinnovators.co.rw/config/session.php on line 21
+[08-Mar-2026 22:08:39 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function env() in /home/afrino3/trescahub.afrinnovators.co.rw/config/logging.php:21
+Stack trace:
+#0 {main}
+  thrown in /home/afrino3/trescahub.afrinnovators.co.rw/config/logging.php on line 21

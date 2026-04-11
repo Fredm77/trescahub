@@ -1,0 +1,296 @@
+@extends('front.layouts.guest')
+@section('content')
+
+<main class="py-5 py-md-20">
+    <div class="container">
+
+        {{-- Back Button --}}
+        <a href="{{ route('shop') }}" class="d-inline-flex align-items-center gap-2 text-decoration-none text-muted mb-4" style="font-size: 0.95rem;">
+            <i class="bi bi-arrow-left"></i>
+            Back to Shop
+        </a>
+
+        {{-- Product Detail --}}
+        <div class="row g-5 mt-2">
+            {{-- Left: Image --}}
+            <div class="col-12 col-lg-5">
+                <div class="rounded-3 overflow-hidden bg-light shadow-sm">
+                    @if($shopProduct->thumbnail)
+                        <img src="{{ asset('public/assets/' . $shopProduct->thumbnail) }}"
+                             alt="{{ $shopProduct->product_name }}"
+                             class="w-100 img-fluid"
+                             style="aspect-ratio: 1 / 1; object-fit: cover;">
+                    @else
+                        <div class="d-flex align-items-center justify-content-center"
+                             style="aspect-ratio: 1 / 1; font-size: 4rem; color: #ccc;">
+                            <i class="bi bi-box-seam"></i>
+                        </div>
+                    @endif
+                </div>
+
+                {{-- Badges --}}
+                <div class="d-flex gap-2 mt-4 flex-wrap">
+                    @if($shopProduct->status === 'in_stock')
+                        <span class="badge bg-success" style="font-size: 0.8rem;">In Stock</span>
+                    @else
+                        <span class="badge bg-danger" style="font-size: 0.8rem;">Out of Stock</span>
+                    @endif
+                    @if($shopProduct->category)
+                        <span class="badge bg-light text-dark" style="font-size: 0.8rem;">
+                            {{ $shopProduct->category->name }}
+                        </span>
+                    @endif
+                </div>
+
+                {{-- Additional Images Gallery (if exists) --}}
+                @if($shopProduct->images && count($shopProduct->images) > 0)
+                    <div class="mt-4">
+                        <h6 class="text-muted mb-3" style="font-size: 0.9rem;">Gallery</h6>
+                        <div class="row g-2">
+                            @foreach($shopProduct->images as $image)
+                                <div class="col-4">
+                                    <img src="{{ asset('public/assets/' . $image) }}"
+                                         alt="Gallery"
+                                         class="w-100 rounded-2 shadow-sm"
+                                         style="height: 100px; object-fit: cover; cursor: pointer; transition: all 0.3s ease;"
+                                         data-bs-toggle="modal"
+                                         data-bs-target="#imageModal"
+                                         onclick="document.getElementById('modalImage').src = this.src;">
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+            </div>
+
+            {{-- Right: Details --}}
+            <div class="col-12 col-lg-7">
+                {{-- Category Badge --}}
+                @if($shopProduct->category)
+                    <span class="badge bg-secondary-subtle text-dark rounded-pill px-3 py-2" style="font-size: 0.85rem;">
+                        {{ $shopProduct->category->name }}
+                    </span>
+                @endif
+
+                {{-- Title --}}
+                <h1 class="mt-3 fw-bold" style="font-size: 2.5rem;">
+                    {{ $shopProduct->product_name }}
+                </h1>
+
+                {{-- Description --}}
+                @if($shopProduct->description)
+                    <p class="mt-4 text-muted lead">
+                        {{ $shopProduct->description }}
+                    </p>
+                @endif
+
+                {{-- Price & Order Section --}}
+                <div class="mt-5 rounded-3 p-4 shadow-sm" style="background-color: #f8f9fa;">
+                    <div class="d-flex align-items-end gap-2">
+                        <span class="fw-bold" style="font-size: 2.5rem; color: #16a34a;">
+                            RWF {{ number_format($shopProduct->price, 0, '.', ',') }}
+                        </span>
+                    </div>
+
+                    {{-- Working Days --}}
+                    <div class="d-flex align-items-center gap-2 mt-3 text-muted" style="font-size: 0.95rem;">
+                        <i class="bi bi-clock"></i>
+                        <span>Delivery: {{ $shopProduct->working_days }} working day(s)</span>
+                    </div>
+
+                    {{-- WhatsApp Order Button --}}
+                    @php
+                        $whatsappMessage = urlencode(
+                            "Hi TRESCA Hub! I'm interested in: *" . $shopProduct->product_name . "*\n" .
+                            "Price: RWF " . number_format($shopProduct->price, 0, '.', ',') . "\n" .
+                            "Please share more details.\n\n" .
+                            "Product Link: " . route('shop-products.show', $shopProduct)
+                        );
+                        $whatsappUrl = "https://wa.me/250780290040?text=" . $whatsappMessage;
+                    @endphp
+
+                    <div class="mt-4">
+                        <a href="{{ $whatsappUrl }}" target="_blank" class="btn btn-success btn-lg w-100 gap-2" style="background-color: #25d366; border-color: #25d366;">
+                            <i class="bi bi-whatsapp"></i>
+                            Order via WhatsApp
+                        </a>
+                    </div>
+
+                    {{-- Stock Status --}}
+                    @if($shopProduct->status === 'out_of_stock')
+                        <div class="alert alert-warning mt-3 mb-0" role="alert">
+                            <i class="bi bi-exclamation-triangle"></i>
+                            This product is currently out of stock. Contact us for availability.
+                        </div>
+                    @endif
+                </div>
+
+                {{-- Features --}}
+                @if($shopProduct->features && count($shopProduct->features) > 0)
+                    <div class="mt-6">
+                        <h5 class="fw-bold">Features & What's Included</h5>
+                        <div class="row g-3 mt-2">
+                            @foreach($shopProduct->features as $feature)
+                                <div class="col-12 col-sm-6">
+                                    <div class="d-flex gap-3 p-3 bg-light rounded-3">
+                                        <div class="d-flex align-items-center justify-content-center rounded-circle bg-success text-white" style="width: 24px; height: 24px; flex-shrink: 0; font-size: 0.75rem;">
+                                            ✓
+                                        </div>
+                                        <span class="text-sm" style="font-size: 0.95rem;">{{ $feature }}</span>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                @endif
+
+                {{-- Specifications --}}
+                @if($shopProduct->specifications && count($shopProduct->specifications) > 0)
+                    <div class="mt-6">
+                        <h5 class="fw-bold">Specifications</h5>
+                        <div class="mt-3 rounded-3 overflow-hidden shadow-sm">
+                            <div class="table-responsive">
+                                <table class="table table-sm mb-0">
+                                    @foreach($shopProduct->specifications as $spec)
+                                        <tr>
+                                            <td class="text-muted fw-semibold" style="padding: 0.75rem 1rem;">
+                                                {{ $spec['label'] ?? $spec }}
+                                            </td>
+                                            <td class="fw-semibold text-end" style="padding: 0.75rem 1rem;">
+                                                {{ $spec['value'] ?? '' }}
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
+                {{-- Additional WhatsApp CTA --}}
+                <div class="mt-4">
+                    <a href="{{ $whatsappUrl }}" target="_blank" class="btn btn-outline-secondary gap-2">
+                        <i class="bi bi-chat-dots"></i>
+                        Ask Questions via WhatsApp
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        {{-- Related Products --}}
+        @if(isset($related) && $related->count() > 0)
+            <section class="mt-12 pt-5 border-top">
+                <h3 class="fw-bold mb-4">Related Products</h3>
+                <div class="row g-4">
+                    @foreach($related as $relatedProduct)
+                        <div class="col-12 col-sm-6 col-lg-3">
+                            <a href="{{ route('shop-products.show', $relatedProduct) }}" class="text-decoration-none">
+                                <div class="card h-100 shadow-sm product-card">
+
+                                    {{-- Thumbnail --}}
+                                    <div class="overflow-hidden bg-light" style="height: 180px;">
+                                        @if($relatedProduct->thumbnail)
+                                            <img src="{{ asset('public/assets/' . $relatedProduct->thumbnail) }}"
+                                                 alt="{{ $relatedProduct->product_name }}"
+                                                 class="w-100 h-100"
+                                                 style="object-fit: cover; transition: transform 0.3s ease;">
+                                        @else
+                                            <div class="d-flex align-items-center justify-content-center h-100" style="font-size: 2rem; color: #ccc;">
+                                                <i class="bi bi-box-seam"></i>
+                                            </div>
+                                        @endif
+                                    </div>
+
+                                    <div class="card-body d-flex flex-column">
+
+                                        {{-- Badges --}}
+                                        <div class="d-flex gap-2 mb-2 flex-wrap">
+                                            @if($relatedProduct->category)
+                                                <span class="badge bg-light text-dark" style="font-size: 0.7rem;">
+                                                    {{ $relatedProduct->category->name }}
+                                                </span>
+                                            @endif
+                                            <span class="badge {{ $relatedProduct->status === 'in_stock' ? 'bg-success' : 'bg-danger' }}"
+                                                  style="font-size: 0.7rem;">
+                                                {{ $relatedProduct->status === 'in_stock' ? 'In Stock' : 'Out of Stock' }}
+                                            </span>
+                                        </div>
+
+                                        {{-- Title --}}
+                                        <h6 class="card-title fw-bold mb-2" style="font-size: 0.95rem;">
+                                            {{ $relatedProduct->product_name }}
+                                        </h6>
+
+                                        {{-- Description --}}
+                                        @if($relatedProduct->description)
+                                            <p class="card-text text-muted small flex-grow-1 mb-3"
+                                               style="font-size: 0.85rem; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                                                {{ $relatedProduct->description }}
+                                            </p>
+                                        @endif
+
+                                        {{-- Working Days --}}
+                                        <div class="d-flex align-items-center gap-1 mb-3 text-muted" style="font-size: 0.8rem;">
+                                            <i class="bi bi-clock"></i>
+                                            <span>{{ $relatedProduct->working_days }} day(s)</span>
+                                        </div>
+
+                                        {{-- Price & Button --}}
+                                        <div class="d-flex justify-content-between align-items-center mt-auto">
+                                            <span class="fw-bold text-success" style="font-size: 1.25rem;">
+                                                RWF {{ number_format($relatedProduct->price, 0, '.', ',') }}
+                                            </span>
+                                            <span class="btn btn-sm btn-success">
+                                                <i class="bi bi-eye me-1"></i> View
+                                            </span>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            </section>
+        @endif
+
+    </div>
+</main>
+
+{{-- Image Modal for Gallery --}}
+<div class="modal fade" id="imageModal" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            <div class="modal-body p-0">
+                <img id="modalImage" src="" alt="Full view" class="w-100 rounded-3">
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .product-card {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        cursor: pointer;
+        overflow: hidden;
+        border: none;
+    }
+
+    .product-card:hover {
+        box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04) !important;
+        transform: translateY(-4px);
+    }
+
+    .product-card:hover img {
+        transform: scale(1.05);
+    }
+
+    .py-md-20 { padding-top: 5rem; padding-bottom: 5rem; }
+
+    @media (max-width: 768px) {
+        .py-md-20 { padding-top: 3rem; padding-bottom: 3rem; }
+    }
+</style>
+
+@endsection
