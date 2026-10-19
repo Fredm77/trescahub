@@ -73,7 +73,7 @@
 
                     @if(!empty($bgThumbnail))
                         <div class="mb-2">
-                            <img src="{{ asset('public/' . $bgThumbnail) }}"
+                            <img src="{{ asset($bgThumbnail) }}"
                                  alt="{{ $bgTitle }}"
                                  class="rounded"
                                  style="width:120px;height:80px;object-fit:cover;">

@@ -26,7 +26,7 @@
                         <a href="{{ route('shop-products.show', $product->slug) }}" class="text-decoration-none">
                             <div style="height: 200px; overflow: hidden; border-radius: 12px 12px 0 0; background: #f5f5f5;">
                                 @if($product->thumbnail)
-                                    <img src="{{ asset('public/assets/' . $product->thumbnail) }}"
+                                    <img src="{{ asset('assets/' . $product->thumbnail) }}"
                                          alt="{{ $product->product_name }}"
                                          class="w-100 h-100"
                                          style="object-fit: cover; transition: transform 0.3s ease;">

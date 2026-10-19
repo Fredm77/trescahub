@@ -41,13 +41,16 @@
                         </thead>
                         <tbody>
                             @foreach($products as $product)
+
+                            <!-- @dd($product); -->
+
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     
                                     {{-- Thumbnail --}}
                                     <td>
                                         @if($product->thumbnail)
-                                            <img src="{{ asset('public/assets/' . $product->thumbnail) }}"
+                                            <img src="{{ asset('assets/' . $product->thumbnail) }}"
                                                  alt="{{ $product->product_name }}"
                                                  class="rounded"
                                                  style="width:50px;height:50px;object-fit:cover;">
@@ -117,7 +120,7 @@
             @else
                 <div class="text-center py-5">
                     <p class="text-muted">No products found.</p>
-                    <a href="{{ route('shop-products.create') }}" class="btn btn-primary btn-sm">
+                    <a href="{{ route('admin.shop-products.create') }}" class="btn btn-primary btn-sm">
                         Create First Product
                     </a>
                 </div>

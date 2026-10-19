@@ -20,7 +20,7 @@
 @endphp
 
 @if($works->count() > 0)
-<section class="py-5 py-md-6 border-top border-bottom" style="background-color:hsl(var(--muted));">
+<section class="py-5 py-md-6 border-top border-bottom" >
     <div class="container-xl px-4 px-lg-5">
         <h2 class="text-center fw-bold mb-5"
             style="font-family:'Space Grotesk',sans-serif;font-size:clamp(1.75rem,4vw,2.5rem);">

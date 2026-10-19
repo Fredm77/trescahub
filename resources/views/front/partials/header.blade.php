@@ -1,11 +1,11 @@
-<header class="sticky-top border-bottom bg-white shadow-sm" style="z-index: 1050;">
+<header class="sticky-top border-bottom" style="z-index: 1050; background: rgba(255,255,255,0.95); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border-color: #e5e7eb !important;">
     <div class="container-xl">
         <nav class="navbar navbar-expand-xl py-0" style="height: 64px;">
 
             {{-- Brand Logo --}}
             <a class="navbar-brand d-flex align-items-center gap-1 me-4" href="{{ route('home') }}">
-                <span class="fw-bold fs-5" style="color: hsl(var(--primary)); font-family: 'Space Grotesk', sans-serif;">TRESCA</span>
-                <span class="fw-light fs-5" style="font-family: 'Space Grotesk', sans-serif; color: hsl(var(--foreground));">Hub</span>
+                <span class="fw-bold fs-5" style="color: #16a34a; font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.3px;">TRESCA</span>
+                <span class="fw-light fs-5" style="color: #111; font-family: 'Space Grotesk', sans-serif; letter-spacing: -0.3px;">Hub</span>
             </a>
 
             {{-- Desktop Nav Links --}}
@@ -13,33 +13,33 @@
                 <ul class="navbar-nav me-auto gap-1">
                     <li class="nav-item">
                         <a href="{{ route('home') }}"
-                           class="nav-link rounded px-3 py-2 fw-medium {{ request()->routeIs('home') ? 'active text-primary bg-light' : 'text-muted' }}"
-                           style="font-size: 13px;">Home</a>
+                           class="nav-link rounded px-3 py-2 fw-medium {{ request()->routeIs('home') ? 'active' : '' }}"
+                           style="font-size: 13px; color: {{ request()->routeIs('home') ? '#16a34a' : '#6b7280' }}; background-color: {{ request()->routeIs('home') ? '#f3f4f6' : 'transparent' }};">Home</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('services') }}"
-                           class="nav-link rounded px-3 py-2 fw-medium {{ request()->routeIs('services') ? 'active text-primary bg-light' : 'text-muted' }}"
-                           style="font-size: 13px;">Services</a>
+                           class="nav-link rounded px-3 py-2 fw-medium {{ request()->routeIs('services') ? 'active' : '' }}"
+                           style="font-size: 13px; color: {{ request()->routeIs('services') ? '#16a34a' : '#6b7280' }}; background-color: {{ request()->routeIs('services') ? '#f3f4f6' : 'transparent' }};">Services</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('shop') }}"
-                           class="nav-link rounded px-3 py-2 fw-medium {{ request()->routeIs('shop') ? 'active text-primary bg-light' : 'text-muted' }}"
-                           style="font-size: 13px;">Shop</a>
+                           class="nav-link rounded px-3 py-2 fw-medium {{ request()->routeIs('shop') ? 'active' : '' }}"
+                           style="font-size: 13px; color: {{ request()->routeIs('shop') ? '#16a34a' : '#6b7280' }}; background-color: {{ request()->routeIs('shop') ? '#f3f4f6' : 'transparent' }};">Shop</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('for-partners') }}"
-                           class="nav-link rounded px-3 py-2 fw-medium {{ request()->routeIs('for-partners') ? 'active text-primary bg-light' : 'text-muted' }}"
-                           style="font-size: 13px;">For Partners</a>
+                           class="nav-link rounded px-3 py-2 fw-medium {{ request()->routeIs('for-partners') ? 'active' : '' }}"
+                           style="font-size: 13px; color: {{ request()->routeIs('for-partners') ? '#16a34a' : '#6b7280' }}; background-color: {{ request()->routeIs('for-partners') ? '#f3f4f6' : 'transparent' }};">For Partners</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ route('request-service') }}"
-                           class="nav-link rounded px-3 py-2 fw-medium {{ request()->routeIs('request-service') ? 'active text-primary bg-light' : 'text-muted' }}"
-                           style="font-size: 13px;">Request Service</a>
+                           class="nav-link rounded px-3 py-2 fw-medium {{ request()->routeIs('request-service') ? 'active' : '' }}"
+                           style="font-size: 13px; color: {{ request()->routeIs('request-service') ? '#16a34a' : '#6b7280' }}; background-color: {{ request()->routeIs('request-service') ? '#f3f4f6' : 'transparent' }};">Request Service</a>
                     </li>
                 </ul>
             </div>
 
-            {{-- Right Side: Search + Mobile Toggle --}}
+            {{-- Right Side: Desktop Search + Mobile Search Icon --}}
             <div class="d-flex align-items-center gap-2 ms-auto">
 
                 {{-- Live Search (Desktop) --}}
@@ -65,106 +65,77 @@
                     </div>
                 </div>
 
-                {{-- Mobile Toggle --}}
-                <button class="navbar-toggler border-0 p-2 d-xl-none"
+                {{-- Mobile Search Icon --}}
+                <button class="border-0 bg-transparent p-2 d-xl-none"
                         type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#mainNavbar"
-                        aria-controls="mainNavbar"
-                        aria-expanded="false"
-                        aria-label="Toggle navigation">
-                    <i class="bi bi-list fs-5"></i>
+                        id="mobileSearchToggle"
+                        aria-label="Search">
+                    <i class="bi bi-search fs-5 text-dark"></i>
                 </button>
-            </div>
 
+            </div>
         </nav>
     </div>
 
-    {{-- Mobile Dropdown Menu --}}
-    <div class="collapse d-xl-none" id="mainNavbar">
-        <div class="border-top bg-white">
-            <div class="container-xl py-3">
-                <ul class="navbar-nav gap-1">
-                    <li class="nav-item">
-                        <a href="{{ route('home') }}"
-                           class="nav-link rounded px-3 py-2 fw-medium {{ request()->routeIs('home') ? 'text-primary bg-light' : 'text-muted' }}">
-                            <i class="bi bi-house me-2"></i>Home
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('services') }}"
-                           class="nav-link rounded px-3 py-2 fw-medium {{ request()->routeIs('services') ? 'text-primary bg-light' : 'text-muted' }}">
-                            <i class="bi bi-briefcase me-2"></i>Services
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('shop') }}"
-                           class="nav-link rounded px-3 py-2 fw-medium {{ request()->routeIs('shop') ? 'text-primary bg-light' : 'text-muted' }}">
-                            <i class="bi bi-bag me-2"></i>Shop
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('for-partners') }}"
-                           class="nav-link rounded px-3 py-2 fw-medium {{ request()->routeIs('for-partners') ? 'text-primary bg-light' : 'text-muted' }}">
-                            <i class="bi bi-handshake me-2"></i>For Partners
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('request-service') }}"
-                           class="nav-link rounded px-3 py-2 fw-medium {{ request()->routeIs('request-service') ? 'text-primary bg-light' : 'text-muted' }}">
-                            <i class="bi bi-file-text me-2"></i>Request Service
-                        </a>
-                    </li>
-
-                    {{-- Mobile Live Search --}}
-                    <li class="nav-item mt-2 position-relative">
-                        <div class="d-flex align-items-center border rounded-pill px-3 bg-light" style="height:40px;">
-                            <i class="bi bi-search text-muted me-2" style="font-size:0.85rem;"></i>
-                            <input type="text"
-                                   id="liveSearchMobile"
-                                   class="border-0 bg-transparent w-100"
-                                   placeholder="Search..."
-                                   style="font-size:13px;outline:none;"
-                                   autocomplete="off">
-                        </div>
-                        <div id="searchDropdownMobile"
-                             class="position-absolute bg-white rounded-3 shadow-lg d-none w-100"
-                             style="top:calc(100% + 6px);left:0;right:0;max-height:360px;overflow-y:auto;z-index:9999;border:1px solid #e5e7eb;">
-                        </div>
-                    </li>
-                </ul>
+    {{-- Mobile Search Bar --}}
+    <div id="mobileSearchBar" class="d-none border-top bg-white px-3 py-2">
+        <div class="position-relative">
+            <div class="d-flex align-items-center border rounded-pill px-3 bg-light" style="height:40px;">
+                <i class="bi bi-search text-muted me-2" style="font-size:0.85rem;"></i>
+                <input type="text"
+                       id="liveSearchMobile"
+                       class="border-0 bg-transparent w-100"
+                       placeholder="Search..."
+                       style="font-size:13px;outline:none;"
+                       autocomplete="off">
+                <button type="button" id="closeMobileSearchBar"
+                        class="border-0 bg-transparent p-0 ms-2"
+                        style="color:#999;font-size:0.9rem;cursor:pointer;">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
+            <div id="searchDropdownMobile"
+                 class="position-absolute bg-white rounded-3 shadow-lg d-none w-100"
+                 style="top:calc(100% + 6px);left:0;right:0;max-height:360px;overflow-y:auto;z-index:9999;border:1px solid #e5e7eb;">
             </div>
         </div>
     </div>
+
 </header>
 
 {{-- Mobile Bottom Navigation Bar --}}
-<nav class="fixed-bottom border-top bg-white d-xl-none" style="z-index: 1050; padding-bottom: env(safe-area-inset-bottom);">
+<nav class="fixed-bottom border-top d-xl-none"
+     style="z-index: 1050;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-color: #e5e7eb !important;
+            padding-bottom: env(safe-area-inset-bottom);">
     <div class="d-flex justify-content-around align-items-center py-2">
         <a href="{{ route('home') }}"
-           class="d-flex flex-column align-items-center text-decoration-none gap-1 px-2 {{ request()->routeIs('home') ? 'text-primary' : 'text-muted' }}"
-           style="font-size: 10px; font-weight: 500;">
+           class="d-flex flex-column align-items-center text-decoration-none gap-1 px-2"
+           style="font-size: 10px; font-weight: 500; color: {{ request()->routeIs('home') ? '#16a34a' : '#6b7280' }};">
             <i class="bi bi-house fs-5"></i>Home
         </a>
         <a href="{{ route('services') }}"
-           class="d-flex flex-column align-items-center text-decoration-none gap-1 px-2 {{ request()->routeIs('services') ? 'text-primary' : 'text-muted' }}"
-           style="font-size: 10px; font-weight: 500;">
+           class="d-flex flex-column align-items-center text-decoration-none gap-1 px-2"
+           style="font-size: 10px; font-weight: 500; color: {{ request()->routeIs('services') ? '#16a34a' : '#6b7280' }};">
             <i class="bi bi-briefcase fs-5"></i>Services
         </a>
         <a href="{{ route('shop') }}"
-           class="d-flex flex-column align-items-center text-decoration-none gap-1 px-2 {{ request()->routeIs('shop') ? 'text-primary' : 'text-muted' }}"
-           style="font-size: 10px; font-weight: 500;">
+           class="d-flex flex-column align-items-center text-decoration-none gap-1 px-2"
+           style="font-size: 10px; font-weight: 500; color: {{ request()->routeIs('shop') ? '#16a34a' : '#6b7280' }};">
             <i class="bi bi-bag fs-5"></i>Shop
         </a>
         <a href="{{ route('request-service') }}"
-           class="d-flex flex-column align-items-center text-decoration-none gap-1 px-2 {{ request()->routeIs('request-service') ? 'text-primary' : 'text-muted' }}"
-           style="font-size: 10px; font-weight: 500;">
+           class="d-flex flex-column align-items-center text-decoration-none gap-1 px-2"
+           style="font-size: 10px; font-weight: 500; color: {{ request()->routeIs('request-service') ? '#16a34a' : '#6b7280' }};">
             <i class="bi bi-file-text fs-5"></i>Request
         </a>
         <a href="{{ route('for-partners') }}"
-           class="d-flex flex-column align-items-center text-decoration-none gap-1 px-2 {{ request()->routeIs('for-partners') ? 'text-primary' : 'text-muted' }}"
-           style="font-size: 10px; font-weight: 500;">
-            <i class="bi bi-handshake fs-5"></i>Partners
+           class="d-flex flex-column align-items-center text-decoration-none gap-1 px-2"
+           style="font-size: 10px; font-weight: 500; color: {{ request()->routeIs('for-partners') ? '#16a34a' : '#6b7280' }};">
+            <i class="bi bi-people fs-5"></i>Partners
         </a>
     </div>
 </nav>
@@ -182,12 +153,20 @@
     .search-no-results { padding:24px 16px; text-align:center; color:#9ca3af; font-size:0.875rem; }
     .search-loading { padding:20px 16px; text-align:center; color:#9ca3af; font-size:0.875rem; }
     #searchBox:focus-within { width:300px !important; }
+
+    .navbar .nav-link:hover {
+        background-color: #f3f4f6 !important;
+        color: #16a34a !important;
+    }
+    nav.fixed-bottom a:hover {
+        color: #16a34a !important;
+    }
 </style>
 
 <script>
 (function () {
-    const SEARCH_URL    = '{{ route("search.live") }}'.replace(/^http:\/\//i, 'https://');
-    const PUBLIC_ASSETS = '{{ url("public/assets") }}'.replace(/^http:\/\//i, 'https://') + '/';
+    const SEARCH_URL    = '{{ route("search.live") }}';
+    const PUBLIC_ASSETS = '{{ url("assets") }}' + '/';
 
     function buildDropdown(results, dropdown) {
         dropdown.innerHTML = '';
@@ -256,10 +235,15 @@
                 fetch(`${SEARCH_URL}?q=${encodeURIComponent(q)}`, {
                     headers: { 'Accept': 'application/json', 'X-Requested-With': 'XMLHttpRequest' }
                 })
-                .then(r => r.json())
+                .then(r => {
+                    if (!r.ok) throw new Error('HTTP ' + r.status + ' ' + r.statusText);
+                    return r.json();
+                })
                 .then(data => buildDropdown(data, dropdown))
-                .catch(() => {
-                    dropdown.innerHTML = '<div class="search-no-results">Something went wrong.</div>';
+                .catch(err => {
+                    console.error('Search error:', err);
+                    dropdown.innerHTML = '<div class="search-no-results"><i class="bi bi-exclamation-circle me-2"></i>Something went wrong.</div>';
+                    dropdown.classList.remove('d-none');
                 });
             }, 280);
         });
@@ -284,6 +268,30 @@
     document.addEventListener('DOMContentLoaded', function () {
         initSearch('liveSearchInput', 'searchDropdown');
         initSearch('liveSearchMobile', 'searchDropdownMobile');
+
+        // Mobile search bar toggle
+        const toggleBtn   = document.getElementById('mobileSearchToggle');
+        const mobileBar   = document.getElementById('mobileSearchBar');
+        const closeBarBtn = document.getElementById('closeMobileSearchBar');
+        const mobileInput = document.getElementById('liveSearchMobile');
+
+        if (toggleBtn && mobileBar) {
+            toggleBtn.addEventListener('click', function () {
+                mobileBar.classList.toggle('d-none');
+                if (!mobileBar.classList.contains('d-none')) {
+                    setTimeout(function () { if (mobileInput) mobileInput.focus(); }, 50);
+                }
+            });
+        }
+
+        if (closeBarBtn) {
+            closeBarBtn.addEventListener('click', function () {
+                mobileBar.classList.add('d-none');
+                if (mobileInput) mobileInput.value = '';
+                const dd = document.getElementById('searchDropdownMobile');
+                if (dd) dd.classList.add('d-none');
+            });
+        }
     });
 })();
 </script>

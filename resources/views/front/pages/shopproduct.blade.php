@@ -16,7 +16,7 @@
             <div class="col-12 col-lg-5">
                 <div class="rounded-3 overflow-hidden bg-light shadow-sm">
                     @if($shopProduct->thumbnail)
-                        <img src="{{ asset('public/assets/' . $shopProduct->thumbnail) }}"
+                        <img src="{{ asset('assets/' . $shopProduct->thumbnail) }}"
                              alt="{{ $shopProduct->product_name }}"
                              class="w-100 img-fluid"
                              style="aspect-ratio: 1 / 1; object-fit: cover;">
@@ -49,7 +49,7 @@
                         <div class="row g-2">
                             @foreach($shopProduct->images as $image)
                                 <div class="col-4">
-                                    <img src="{{ asset('public/assets/' . $image) }}"
+                                    <img src="{{ asset('assets/' . $image) }}"
                                          alt="Gallery"
                                          class="w-100 rounded-2 shadow-sm"
                                          style="height: 100px; object-fit: cover; cursor: pointer; transition: all 0.3s ease;"
@@ -190,7 +190,7 @@
                                     {{-- Thumbnail --}}
                                     <div class="overflow-hidden bg-light" style="height: 180px;">
                                         @if($relatedProduct->thumbnail)
-                                            <img src="{{ asset('public/assets/' . $relatedProduct->thumbnail) }}"
+                                            <img src="{{ asset('assets/' . $relatedProduct->thumbnail) }}"
                                                  alt="{{ $relatedProduct->product_name }}"
                                                  class="w-100 h-100"
                                                  style="object-fit: cover; transition: transform 0.3s ease;">

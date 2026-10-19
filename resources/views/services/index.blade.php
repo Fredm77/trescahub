@@ -34,7 +34,7 @@
 
                         <td>
                             @if($service->thumbnail)
-                                <img src="{{ asset('public/' . $service->thumbnail) }}"
+                                <img src="{{ asset($service->thumbnail) }}"
                                      class="rounded"
                                      style="width:48px;height:48px;object-fit:cover"
                                      alt="{{ $service->title }}">

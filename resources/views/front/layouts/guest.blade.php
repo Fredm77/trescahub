@@ -23,11 +23,19 @@
         <!-- Font Awesome Icons -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
 
-        <!-- Vite Assets (Tailwind + App JS) -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-
+     
         <!-- Livewire Styles -->
         @livewireStyles
+
+		<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6P1BYWFX0D"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-6P1BYWFX0D');
+</script>
     </head>
     <body class="font-sans text-gray-900 antialiased">
 
@@ -46,7 +54,7 @@
         @livewireScripts
 
         {{-- ── WhatsApp Floating Button ── --}}
-        <a href="https://wa.me/078690891?text={{ urlencode('Hello TRESCA, I want to talk about the product you are selling') }}"
+        <a href="https://wa.me/250786908916?text={{ urlencode('Hello TRESCA, I want to talk about the product you are selling') }}"
            target="_blank"
            rel="noopener noreferrer"
            title="Chat with us on WhatsApp"

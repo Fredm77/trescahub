@@ -65,6 +65,7 @@ class ShopProductController extends Controller
         $products = ShopProduct::with(['category', 'subcategory'])
             ->latest()
             ->paginate(15);
+            
 
         return view('shop-products.index', compact('products'));
     }
@@ -93,9 +94,9 @@ class ShopProductController extends Controller
             'specifications'         => ['nullable', 'array'],
             'specifications.*.label' => ['nullable', 'string', 'max:255'],
             'specifications.*.value' => ['nullable', 'string', 'max:255'],
-            'thumbnail'              => ['nullable', 'image', 'max:2048'],
+            'thumbnail'              => ['nullable', 'image', 'max:20480'],
             'images'                 => ['nullable', 'array'],
-            'images.*'               => ['image', 'max:2048'],
+            'images.*'               => ['image', 'max:20480'],
             'shop_category_id'       => ['required', 'integer', 'exists:shop_categories,id'],
             'subcategory_id'         => ['nullable', 'integer', 'exists:shop_categories,id'],
         ]);
@@ -122,6 +123,23 @@ class ShopProductController extends Controller
         while (ShopProduct::where('slug', $slug)->exists()) {
             $slug = $baseSlug . '-' . $count++;
         }
+
+
+        // dd([
+        //     'product_name'     => $validated['product_name'],
+        //     'status'           => $validated['status'],
+        //     'is_popular'       => $request->boolean('is_popular', false),
+        //     'description'      => $validated['description'] ?? null,
+        //     'price'            => $validated['price'],
+        //     'working_days'     => $validated['working_days'],
+        //     'features'         => $features,
+        //     'specifications'   => $specifications,
+        //     'thumbnail'        => $thumbnailPath,
+        //     'images'           => $imagePaths,
+        //     'shop_category_id' => $validated['shop_category_id'],
+        //     'subcategory_id'   => $validated['subcategory_id'] ?? null,
+        //     'slug'             => $slug,
+        // ]);
 
         ShopProduct::create([
             'product_name'     => $validated['product_name'],
@@ -175,9 +193,9 @@ class ShopProductController extends Controller
             'specifications'         => ['nullable', 'array'],
             'specifications.*.label' => ['nullable', 'string', 'max:255'],
             'specifications.*.value' => ['nullable', 'string', 'max:255'],
-            'thumbnail'              => ['nullable', 'image', 'max:2048'],
+            'thumbnail'              => ['nullable', 'image', 'max:20480'],
             'images'                 => ['nullable', 'array'],
-            'images.*'               => ['image', 'max:2048'],
+            'images.*'               => ['image', 'max:20480'],
             'shop_category_id'       => ['required', 'integer', 'exists:shop_categories,id'],
             'subcategory_id'         => ['nullable', 'integer', 'exists:shop_categories,id'],
         ]);

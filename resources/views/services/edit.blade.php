@@ -195,7 +195,7 @@
                 <label class="form-label fw-semibold">Thumbnail</label>
                 @if($service->thumbnail)
                     <div class="mb-2">
-                        <img src="{{ asset('public/' . $service->thumbnail) }}"
+                        <img src="{{ asset($service->thumbnail) }}"
                              class="rounded"
                              style="width:100px;height:100px;object-fit:cover"
                              alt="{{ $service->title }}">
@@ -217,7 +217,7 @@
                 @if(!empty($service->other_images))
                     <div class="d-flex flex-wrap gap-2 mb-2">
                         @foreach($service->other_images as $img)
-                            <img src="{{ asset('public/' . $img) }}"
+                            <img src="{{ asset($img) }}"
                                  class="rounded"
                                  style="width:80px;height:80px;object-fit:cover"
                                  alt="Service image">

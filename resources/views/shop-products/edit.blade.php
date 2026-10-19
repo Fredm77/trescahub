@@ -200,7 +200,7 @@
                             <label for="thumbnail" class="form-label fw-bold">Thumbnail Image</label>
                             @if($shopProduct->thumbnail)
                                 <div class="mb-2">
-                                    <img src="{{ asset('public/assets/' . $shopProduct->thumbnail) }}"
+                                    <img src="{{ asset('assets/' . $shopProduct->thumbnail) }}"
                                          class="rounded"
                                          style="width:100px;height:100px;object-fit:cover;"
                                          alt="Current Thumbnail">
@@ -224,7 +224,7 @@
                             @if(!empty($shopProduct->images))
                                 <div class="d-flex flex-wrap gap-2 mb-2">
                                     @foreach($shopProduct->images as $img)
-                                        <img src="{{ asset('public/assets/' . $img) }}"
+                                        <img src="{{ asset('assets/' . $img) }}"
                                              class="rounded"
                                              style="width:80px;height:80px;object-fit:cover;"
                                              alt="Product Image">
